@@ -14,12 +14,13 @@ const auth = require("./routes/authRoutes");
 const blog = require("./routes/blogRoutes");
 
 // Routes
-app.use("/api/v1/auth", auth);
-app.use("/api/v1/blog", [Auth], blog);
+app.use("/api/auth", auth);
+app.use("/api/blogs", [Auth], blog);
+
 
 // Default landing endpoint
 app.use("/", (req, res, next) => {
     res.send({ message: "Welcome" });
 });
 
-app.listen(1200, console.log("running on port 1200"));
+app.listen(5000, console.log("running on port 5000"));

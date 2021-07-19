@@ -4,7 +4,7 @@ const Auth = async(req, res, next) => {
     const user = await UserSchema.findOne({ email });
     if (user) {
         req.user = user;
-        next();
+       return next();
     }
 
     return res.send("User not found!");
