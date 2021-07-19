@@ -1,0 +1,26 @@
+{
+    "name": "learnRedis",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Mostalpha7/learnRedis.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Mostalpha7/learnRedis/issues"
+    },
+    "homepage": "https://github.com/Mostalpha7/learnRedis#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.13.3",
+        "nodemon": "^2.0.12"
+    }
+}
