@@ -9,6 +9,9 @@ app.use(cors({ origin: "*" }));
 app.use(express.urlencoded({ limit: "100mb", extended: true }));
 app.use(express.json({ limit: "100mb", extended: true }));
 
+// Services
+require("./services/cache");
+
 // Route files
 const auth = require("./routes/authRoutes");
 const blog = require("./routes/blogRoutes");
@@ -16,7 +19,6 @@ const blog = require("./routes/blogRoutes");
 // Routes
 app.use("/api/auth", auth);
 app.use("/api/blogs", [Auth], blog);
-
 
 // Default landing endpoint
 app.use("/", (req, res, next) => {
