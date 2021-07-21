@@ -6,7 +6,8 @@ const client = redis.createClient(redisUrl);
 const util = require("util");
 client.get = util.promisify(client.get);
 
-const { UserSchema, BlogSchema } = require("../models");
+const cleanCache = require("../middlewares/cleanCache");
+const { BlogSchema } = require("../models");
 
 router.get("/:id", async(req, res) => {
     const blog = await BlogSchema.findOne({
@@ -21,11 +22,13 @@ router.get("/:id", async(req, res) => {
 });
 
 router.get("/", async(req, res) => {
-    const blogs = await BlogSchema.find({ _user: req.user.id });
+    const blogs = await BlogSchema.find({ _user: req.user.id }).cache({
+        key: req.user.id,
+    });
     return res.send(blogs);
 });
 
-router.post("/", async(req, res) => {
+router.post("/", cleanCache, async(req, res) => {
     const { title, content } = req.body;
 
     const blog = new BlogSchema({
